@@ -9,7 +9,7 @@ def mahalanobis_classifier(m,S,X):
 % INPUT ARGUMENTS:
 %   m:  cxl matrix, whose i-th column corresponds to the
 %       mean of the i-th class
-%   S:  lxl matrix which corresponds to the matrix
+%   S:  cxlxl matrix which corresponds to the matrix
 %       involved in the Mahalanobis distance (when the classes have
 %       the same covariance matrix, S equals to this common covariance
 %       matrix).
@@ -18,7 +18,7 @@ def mahalanobis_classifier(m,S,X):
 % OUTPUT ARGUMENTS:
 %   z:  N-dimensional vector whose i-th component contains the label
 %       of the class where the i-th data vector has been assigned.
-%
+%   d_m_mat: matrix showing eulidean distance values . d_e is is Nxl. d_e_mat[i,j]-> i,j where ith sample and jth class    
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
     
     
@@ -31,12 +31,12 @@ def mahalanobis_classifier(m,S,X):
         
         d_m=[None]*c
         for j in range(c):
-            d_m[j]=np.sqrt((X[i,:]-m[j,:]).T@(np.linalg.inv(S[i,:,:]))@(X[i,:]-m[j,:]))
-            print(d_m[j])
+            d_m[j]=np.sqrt((X[i,:]-m[j,:]).T@(np.linalg.inv(S[j,:,:]))@(X[i,:]-m[j,:]))
+            #print(d_m[j])
             d_m_mat[i,j]=d_m[j]
         z[i]=  np.argmin(d_m)
         
-    return z,d_m_mat
+    return np.array(z),d_m_mat
 if __name__=="__main__":
     m1=np.array([0,0,0])
     m2=np.array([0.5,0.5,0.5])

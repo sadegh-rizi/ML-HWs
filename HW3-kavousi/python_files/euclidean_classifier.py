@@ -11,11 +11,11 @@ def euclidean_classifier(m,X):
 %       class.
 %   X:  Nxl matrix whose columns are the data vectors to be classified.
 %
-% OUTPUT ARGUMENTS:
+% OUTPUT ARGUMENTS: (z,d_e_mat)
 %   z:  N-dimensional vector whose i-th element contains the label
 %       of the class where the i-th data vector has been assigned.
-%
-    """
+%   d_e_mat: matrix showing eulidean distance values . d_e is is Nxl. d_e_mat[i,j]-> i,j where ith sample and jth class
+     """
     c,l=m.shape
     N,l=X.shape
     z=[None]*N
@@ -28,7 +28,7 @@ def euclidean_classifier(m,X):
             d_e_mat[i,j]=d_e[j]
         z[i]=  np.argmin(d_e)
         
-    return z,d_e_mat
+    return np.array(z),d_e_mat
 if __name__=="__main__":
     m1=np.array([0,0,0])
     m2=np.array([0.5,0.5,0.5])

@@ -28,7 +28,7 @@ OUTPUT ARGUMENTS:
         for j in range(c):
             P_w_x[j]= P[j]*comp_gauss_dens_val(m[j,:],S[j,:,:],X[i,:])
         z[i]=  np.argmax(P_w_x)
-    return z
+    return np.array(z)
 if __name__=="__main__":
     m1=np.array([0,0,0])
     m2=np.array([0.5,0.5,0.5])
